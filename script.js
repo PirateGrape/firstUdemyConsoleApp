@@ -15,17 +15,17 @@ let personalMovieDB = {
 for (let i = 1; i <= numberOfFilms; i++) {
 
     let a = //название фильма
-    prompt("Один из последних просмотренных фильмов?", '');
+        prompt("Один из последних просмотренных фильмов?", '');
 
-    if(a == null) {
+    if (a == null) {
         a = prompt('Пожалуйста, введите название одного из последних просмотренных фильмов', '');
-    } else if(a.length == 0) {
+    } else if (a.length == 0) {
         a = prompt("Пожалуйста, укажите название одного из последних просмотренных фильмов");
-    } else if(a.length > 50) {
-        a =prompt("Пожалуйста, введите название покороче (макс. 50 символов)");
+    } else if (a.length > 50) {
+        a = prompt("Пожалуйста, введите название покороче (макс. 50 символов)");
     }
     let b = //оценка фильма
-    prompt("На сколько оцените его?", '');
+        prompt("На сколько оцените его?", '');
 
     personalMovieDB.movies = personalMovieDB.movies + " " + `${a} ${b}`;
 }
@@ -54,7 +54,7 @@ while(numberOfFilms > 0) {
 console.log(personalMovieDB);
 
 //Проверка на количетсво просмотренных фильмов
-if(numberOfFilms < 10) {
+if (numberOfFilms < 10) {
     console.log('Просмотрено довольно мало фильмов');
 } else if (numberOfFilms > 10 && numberOfFilms < 30) {
     console.log('Вы классический зритель');
