@@ -34,12 +34,12 @@ const personalMovieDB = {
     writeYourGenres: function () {
         for (let i = 1; i <= 3; i++) {
             personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i}`);
-            while(personalMovieDB.genres[i] == '' || personalMovieDB.genres[i] == null ||
-            !isNaN(personalMovieDB.genres[i])) {
+            while (personalMovieDB.genres[i] == '' || personalMovieDB.genres[i] == null ||
+                !isNaN(personalMovieDB.genres[i])) {
                 personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i}`);
             }
         }
-        personalMovieDB.genres.forEach(function(d, e, genres){
+        personalMovieDB.genres.forEach(function (d, e, genres) {
             console.log(`Любимый жанр #${e} - это ${personalMovieDB.genres[e]}`);
         });
     },
@@ -62,31 +62,31 @@ const personalMovieDB = {
 
             personalMovieDB.movies[a] = b;
         }
-    
-    /*
-    вариант с циклом while
 
-    while(numberOfFilms > 0) {
-        let a =
-        prompt("Один из последних просмотренных фильмов?", '');
-        if(a.length == 0) {
-            a = prompt("Пожалуйста, укажите название одного из последних просмотренных фильмов");
+        /*
+        вариант с циклом while
+
+        while(numberOfFilms > 0) {
+            let a =
+            prompt("Один из последних просмотренных фильмов?", '');
+            if(a.length == 0) {
+                a = prompt("Пожалуйста, укажите название одного из последних просмотренных фильмов");
+            }
+            else if(a.length > 50) {
+                a =
+                prompt("Пожалуйста, введите название покороче (макс. 50 символов)");
+            }
+            let b =
+            prompt("На сколько оцените его?", '');
+
+            personalMovieDB.movies = personalMovieDB.movies + " " + `${a} ${b}`;
+
+            numberOfFilms--;
         }
-        else if(a.length > 50) {
-            a =
-            prompt("Пожалуйста, введите название покороче (макс. 50 символов)");
-        }
-        let b =
-        prompt("На сколько оцените его?", '');
-
-        personalMovieDB.movies = personalMovieDB.movies + " " + `${a} ${b}`;
-
-        numberOfFilms--;
-    }
-    */
+        */
     },
-    toggleVisibleMyDB: function() {
-        if(!personalMovieDB.privat) {
+    toggleVisibleMyDB: function () {
+        if (!personalMovieDB.privat) {
             personalMovieDB.privat = true;
         } else {
             personalMovieDB.privat = false;
