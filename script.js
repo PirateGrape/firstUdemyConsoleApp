@@ -1,26 +1,25 @@
 "use strict";
 
-let numberOfFilms;
 
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: true,
     start: function () {
-        numberOfFilms = +prompt("Сколько у вас любимых фильмов?", '');
+        personalMovieDB.count = +prompt("Сколько у вас любимых фильмов?", '');
 
-        while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-            numberOfFilms = +prompt("Сколько у вас любимых фильмов?", '');
+        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt("Сколько у вас любимых фильмов?", '');
         }
     },
     detectPersonalLevel: function () {
-        if (numberOfFilms < 10) {
+        if (personalMovieDB.count < 10) {
             console.log('Просмотрено довольно мало фильмов');
-        } else if (numberOfFilms >= 10 && numberOfFilms < 30) {
+        } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
             console.log('Вы классический зритель');
-        } else if (numberOfFilms >= 30) {
+        } else if (personalMovieDB.count >= 30) {
             console.log('Вы киноман');
         } else {
             console.log('Произошла ошибка');
@@ -34,18 +33,18 @@ const personalMovieDB = {
     writeYourGenres: function () {
         for (let i = 1; i <= 3; i++) {
             personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i}`);
-            while (personalMovieDB.genres[i] == '' || personalMovieDB.genres[i] == null ||
-                !isNaN(personalMovieDB.genres[i])) {
-                personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i}`);
+            while (personalMovieDB.genres[i] === '' || personalMovieDB.genres[i] == null) {
+                personalMovieDB.genres[i] = prompt(`Пожалуйста, введите ваш любимый жанр под номером ${i}`);
             }
         }
-        personalMovieDB.genres.forEach(function (d, e, genres) {
+        personalMovieDB.genres.forEach((d, e) => {
             console.log(`Любимый жанр #${e} - это ${personalMovieDB.genres[e]}`);
         });
     },
     rememberMyFilms: function () {
-        //вариант с циклом for
-        for (let i = 1; i <= numberOfFilms; i++) {
+        //вариант с циклом for. Ниже идет вариант с циклом while,
+        //но он мне не очень нравится.
+        for (let i = 1; i <= personalMovieDB.count; i++) {
 
             let a = //название фильма
                 prompt("Название одного из ваших любимых фильмов?", '');
@@ -64,7 +63,8 @@ const personalMovieDB = {
         }
 
         /*
-        вариант с циклом while
+        Вариант с циклом while. Он мне не очень нравится, но для тренировки
+        надо попробовать.
 
         while(numberOfFilms > 0) {
             let a =
@@ -86,15 +86,19 @@ const personalMovieDB = {
         */
     },
     toggleVisibleMyDB: function () {
-        if (!personalMovieDB.privat) {
-            personalMovieDB.privat = true;
-        } else {
+        if (personalMovieDB.privat) {
             personalMovieDB.privat = false;
+        } else {
+            personalMovieDB.privat = true;
         }
     }
 };
 
-/* Вариант без методов основного объекта, а с отдельными функциями.
+/* Вариант, в котором все функции прописаны отдельно, а не как методы
+основного объекта. Часть функций не оптимизирована, но в основном они
+такие же.
+
+//запуск опросника
 function start() {
     numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", '');
 
@@ -105,7 +109,7 @@ function start() {
 
 
 function detectPersonalLevel() {
-    //Проверка на количетсво просмотренных фильмов
+    //Проверка на количетсво любимых фильмов
     if (numberOfFilms < 10) {
         console.log('Просмотрено довольно мало фильмов');
     } else if (numberOfFilms >= 10 && numberOfFilms < 30) {
@@ -117,17 +121,21 @@ function detectPersonalLevel() {
     }
 }
 
+//Вывод данных
 function showMyDB() {
     if (personalMovieDB.privat == false) {
         console.log(personalMovieDB);
     }
 }
 
+//Опросник по любимым жанрам
 function writeYourGenres() {
     for (let i = 1; i <= 3; i++) {
         personalMovieDB.genres[i-1] = prompt(`Ваш любимый жанр под номером ${i}`);
     }
 }
+
+//Опросник про любимые фильмы (часть вопросов устарела)
 
 function rememberMyFilms() {
 
@@ -152,7 +160,8 @@ function rememberMyFilms() {
 
 }
 /*
-вариант с циклом while
+вариант с циклом while. Он мне не очень нравится, но для тренировки
+        надо попробовать.
 
 while(numberOfFilms > 0) {
     let a =
@@ -172,6 +181,8 @@ while(numberOfFilms > 0) {
     numberOfFilms--;
 }
 
+
+//Старый вариант запуска опросника.
 start();
 
 rememberMyFilms();
